@@ -11,27 +11,24 @@ import (
 var timeNowF = time.Now()
 
 func main() {
-	// append a letters round
+	// generate a letters round
 	l := rounds.Letters{}
 	letters := l.Generate()
 
-	// append a numbers round
+	// generate a numbers round
 	n := rounds.Numbers{}
 	numbers := n.Generate()
 
-	// append the conundrum
+	// generate the conundrum
 	c := rounds.Conundrum{}
 	conundrum := c.Generate()
 
 	// generate a pseudo-random seed
 	rand.Seed(int64(timeNowF.YearDay()))
-
-	// randomly choose whether today is a letters or number round
-	// - randomly generate a number between [0,1]
-	// - switch on the result
+	// generate a random number and mod 2
 	today := rand.Int() % 2
 
-	// re-seed and find yesterday's result
+	// re-seed and find yesterday
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
 	yesterday := rand.Int() % 2
 

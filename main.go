@@ -2,7 +2,6 @@ package main
 
 import (
 	"countdown/rounds"
-	"countdown/utils"
 	"fmt"
 	"math/rand"
 	"time"
@@ -32,26 +31,32 @@ func main() {
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
 	yesterday := rand.Int() % 2
 
-	var todayString string
+	todayString := t(today, letters, conundrum, numbers)
+	yesterdayString := y(yesterday, letters, conundrum, numbers)
+
+	fmt.Println(fmt.Sprintf("%s\n%s", todayString, yesterdayString))
+}
+
+func t(today int, letters rounds.Result, conundrum rounds.Result, numbers rounds.Result) string {
 	switch today {
 	// it's a letters round
 	case 0:
-		todayString = fmt.Sprintf(utils.TodayTemplate, letters.Round, letters.Today, conundrum.Round, conundrum.Today)
+		return rounds.TodayString(letters, conundrum)
 	// it's a numbers round
 	case 1:
-		todayString = fmt.Sprintf(utils.TodayTemplate, numbers.Round, numbers.Today, conundrum.Round, conundrum.Today)
+		return rounds.TodayString(numbers, conundrum)
 	}
+	return ""
+}
 
-	var yesterdayString string
+func y(yesterday int, letters rounds.Result, conundrum rounds.Result, numbers rounds.Result) string {
 	switch yesterday {
 	// it's a letters round
 	case 0:
-		yesterdayString = fmt.Sprintf(utils.YesterdayTemplate, letters.Round, letters.Yesterday, conundrum.Round, conundrum.Yesterday)
+		return rounds.YesterdayString(letters, conundrum)
 	// it's a numbers round
 	case 1:
-		yesterdayString = fmt.Sprintf(utils.YesterdayTemplate, numbers.Round, numbers.Yesterday, conundrum.Round, conundrum.Yesterday)
+		return rounds.YesterdayString(numbers, conundrum)
 	}
-
-	fmt.Println(todayString)
-	fmt.Println(yesterdayString)
+	return ""
 }

@@ -11,7 +11,7 @@ type Letters struct{}
 
 func (c *Letters) Generate() Result {
 	// generate a pseudo-random seed
-	rand.Seed(int64(TimeNowF.YearDay()))
+	rand.Seed(int64(timeNowF.YearDay()))
 
 	// fetch a word from the seeds
 	base := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
@@ -31,7 +31,7 @@ func (c *Letters) Generate() Result {
 	today := strings.ToLower(string(baseRune))
 
 	// re-seed to fetch yesterday's solution
-	rand.Seed(int64(TimeNowF.Add(-1 * time.Hour * 24).YearDay()))
+	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
 	yesterday := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
 
 	return Result{

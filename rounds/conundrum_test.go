@@ -9,7 +9,7 @@ import (
 func TestConundrumGenerate(t *testing.T) {
 	// set the date so the pseudo-random
 	// rand seed is consistent for testing
-	TimeNowF = time.Date(2020, 10, 10, 0, 0, 0, 0, time.UTC)
+	timeNowF = time.Date(2020, 10, 10, 0, 0, 0, 0, time.UTC)
 
 	// expected result
 	today := "calreflyu"

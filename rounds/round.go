@@ -2,13 +2,15 @@ package rounds
 
 import "time"
 
+var timeNowF = time.Now()
+
 const (
 	lettersRound   = "letters"
 	numbersRound   = "numbers"
 	conundrumRound = "conundrum"
 )
 
-type Round interface {
+type round interface {
 	Generate() Result
 }
 
@@ -17,5 +19,3 @@ type Result struct {
 	Today     string
 	Yesterday string
 }
-
-var TimeNowF = time.Now()

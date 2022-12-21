@@ -11,7 +11,7 @@ type Conundrum struct{}
 
 func (c *Conundrum) Generate() Result {
 	// generate a pseudo-random seed
-	rand.Seed(int64(TimeNowF.YearDay()))
+	rand.Seed(int64(timeNowF.YearDay()))
 
 	// fetch a word from the seeds
 	base := utils.ConundrumWords[rand.Intn(len(utils.ConundrumWords))]
@@ -26,7 +26,7 @@ func (c *Conundrum) Generate() Result {
 	today := strings.ToLower(string(baseRune))
 
 	// re-seed to fetch yesterday's solution
-	rand.Seed(int64(TimeNowF.Add(-1 * time.Hour * 24).YearDay()))
+	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
 	yesterday := utils.ConundrumWords[rand.Intn(len(utils.ConundrumWords))]
 
 	// return the result

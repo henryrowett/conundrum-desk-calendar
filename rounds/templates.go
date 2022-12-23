@@ -3,8 +3,8 @@ package rounds
 import "fmt"
 
 const title = "\n🤯🕛 HENRY'S COUNTDOWN CALENDAR 🕡🤯\n\n"
-const todayTemplate = "Today's puzzles:\n%s puzzle: %s\n\n%s: %s\n\n"
-const yesterdayTemplate = "Yesterday's answers:\n%s puzzle:%s\n\n%s: %s"
+const todayTemplate = "Today's puzzles:\n%s puzzle: %s\n%s: %s\n\n"
+const yesterdayTemplate = "Yesterday's answers:\n%s puzzle:%s\n%s: %s"
 
 func Title() string {
 	return title

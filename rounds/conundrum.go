@@ -23,11 +23,12 @@ func (c *Conundrum) Generate() Result {
 	})
 
 	// format the string
-	today := strings.ToLower(string(baseRune))
+	today := strings.ToUpper(string(baseRune))
 
 	// re-seed to fetch yesterday's solution
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
-	yesterday := utils.ConundrumWords[rand.Intn(len(utils.ConundrumWords))]
+	y := utils.ConundrumWords[rand.Intn(len(utils.ConundrumWords))]
+	yesterday := strings.ToUpper(y)
 
 	// return the result
 	return Result{

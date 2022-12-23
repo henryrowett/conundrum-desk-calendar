@@ -28,11 +28,12 @@ func (c *Letters) Generate() Result {
 		baseRune[i], baseRune[j] = baseRune[j], baseRune[i]
 	})
 
-	today := strings.ToLower(string(baseRune))
+	today := strings.ToUpper(string(baseRune))
 
 	// re-seed to fetch yesterday's solution
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
-	yesterday := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
+	y := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
+	yesterday := strings.ToUpper(y)
 
 	return Result{
 		Round:     lettersRound,

@@ -1,8 +1,8 @@
 name: daily puzzle
 # run daily at 06:39
-on: push
-#  schedule:
-#    - cron: "39 6 * * *"
+on:
+  schedule:
+    - cron: "39 6 * * *"
 
 jobs:
   daily:

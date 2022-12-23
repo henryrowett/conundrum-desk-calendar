@@ -12,8 +12,8 @@ func TestConundrumGenerate(t *testing.T) {
 	timeNowF = time.Date(2020, 10, 10, 0, 0, 0, 0, time.UTC)
 
 	// expected result
-	today := "calreflyu"
-	yesterday := "colleague"
+	today := "CALREFLYU"
+	yesterday := "COLLEAGUE"
 
 	// act
 	round := Conundrum{}

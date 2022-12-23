@@ -5,4 +5,4 @@ This lil number generates a letters round _or_ numbers round and a conundrum for
 
 ### todo
 - finish implementation of numbers round
-- add infrastructure to message whatsapp group 
+- change from numbers to whatsapp groups?

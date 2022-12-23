@@ -2,7 +2,7 @@ name: daily puzzle
 # run daily at 08:39
 on:
   schedule:
-    - cron: "8 39 * * *"
+    - cron: "39 8 * * *"
 jobs:
   stale:
     runs-on: ubuntu-latest

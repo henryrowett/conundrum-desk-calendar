@@ -5,8 +5,8 @@ import "time"
 var timeNowF = time.Now()
 
 const (
-	lettersRound   = "letters"
-	numbersRound   = "numbers"
+	lettersRound   = "letter"
+	numbersRound   = "number"
 	conundrumRound = "conundrum"
 )
 

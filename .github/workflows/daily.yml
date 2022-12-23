@@ -1,0 +1,14 @@
+name: daily puzzle
+# run daily at 08:39
+on:
+  schedule:
+    - cron: "8 39 * * *"
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v3
+      with:
+        go-version: '1.18' # The Go version to download (if necessary) and use.
+    - run: go run main.go

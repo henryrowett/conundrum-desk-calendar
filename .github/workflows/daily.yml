@@ -8,7 +8,7 @@ jobs:
   daily:
     runs-on: ubuntu-latest
     env:
-      TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+      TWILIO_AUTH_TOKEN: '${{ secrets.TWILIO_AUTH_TOKEN }}'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3

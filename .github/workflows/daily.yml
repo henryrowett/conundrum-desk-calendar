@@ -1,6 +1,6 @@
 name: daily puzzle
 # run daily at 08:39
-#on:
+on: push
 #  schedule:
 #    - cron: "39 8 * * *"
 jobs:

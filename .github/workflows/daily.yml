@@ -10,6 +10,7 @@ jobs:
     env:
       TWILIO_AUTH_TOKEN: '${{ secrets.TWILIO_AUTH_TOKEN }}'
       TWILIO_ACCOUNT_SID: '${{ secrets.TWILIO_ACCOUNT_SID }}'
+      NUMBERS: '${{ secrets.NUMBERS }}'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3

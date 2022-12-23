@@ -3,6 +3,10 @@ name: daily puzzle
 on: push
 #  schedule:
 #    - cron: "39 8 * * *"
+
+env:
+  TWILIO_AUTH_TOKEN: ${{secrets.TWILIO_AUTH_TOKEN}}
+
 jobs:
   daily:
     runs-on: ubuntu-latest

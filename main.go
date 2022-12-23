@@ -2,7 +2,9 @@ package main
 
 import (
 	"countdown/rounds"
+	"countdown/sms"
 	"fmt"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -34,31 +36,16 @@ func main() {
 	todayString := t(today, letters, conundrum, numbers)
 	yesterdayString := y(yesterday, letters, conundrum, numbers)
 
-	fmt.Println(fmt.Sprintf("%s\n%s", todayString, yesterdayString))
-
-	fmt.Println(numbers)
+	err := sms.Send(fmt.Sprintf("%s\n%s", todayString, yesterdayString))
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }
 
 func t(today int, letters rounds.Result, conundrum rounds.Result, numbers rounds.Result) string {
-	switch today {
-	// it's a letters round
-	case 0:
-		return rounds.TodayString(letters, conundrum)
-	// it's a numbers round
-	case 1:
-		return rounds.TodayString(numbers, conundrum)
-	}
-	return ""
+	return rounds.TodayString(letters, conundrum)
 }
 
 func y(yesterday int, letters rounds.Result, conundrum rounds.Result, numbers rounds.Result) string {
-	switch yesterday {
-	// it's a letters round
-	case 0:
-		return rounds.YesterdayString(letters, conundrum)
-	// it's a numbers round
-	case 1:
-		return rounds.YesterdayString(numbers, conundrum)
-	}
-	return ""
+	return rounds.YesterdayString(letters, conundrum)
 }

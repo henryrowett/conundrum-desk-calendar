@@ -35,6 +35,8 @@ func main() {
 	yesterdayString := y(yesterday, letters, conundrum, numbers)
 
 	fmt.Println(fmt.Sprintf("%s\n%s", todayString, yesterdayString))
+
+	fmt.Println(numbers)
 }
 
 func t(today int, letters rounds.Result, conundrum rounds.Result, numbers rounds.Result) string {

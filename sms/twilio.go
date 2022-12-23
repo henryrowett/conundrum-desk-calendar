@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/twilio/twilio-go"
 	twil "github.com/twilio/twilio-go/rest/api/v2010"
+	"log"
 	"os"
 )
 
@@ -16,7 +17,7 @@ func Send(body string) error {
 	// read token from env
 	authToken, ok := os.LookupEnv("TWILIO_AUTH_TOKEN")
 	if !ok {
-		return nil
+		log.Fatal("error on auth token secret lookup")
 	}
 
 	client := twilio.NewRestClientWithParams(twilio.ClientParams{

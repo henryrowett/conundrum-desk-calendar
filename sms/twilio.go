@@ -20,6 +20,8 @@ func Send(body string) error {
 		log.Fatal("error on auth token secret lookup")
 	}
 
+	fmt.Println(authToken)
+
 	client := twilio.NewRestClientWithParams(twilio.ClientParams{
 		Username: accountSid,
 		Password: authToken,

@@ -39,7 +39,7 @@ func (n *Numbers) Generate() Result {
 	// https://en.wikipedia.org/wiki/Polish_notation
 	// we take the first two number elements and first operator
 	// and calculate the result and append that to then be operated on
-	today, ops := recurse(operators, numbers, []string{})
+	today, ops := calculate(operators, numbers, []string{})
 	yesterday := fmt.Sprintf("%s %s", strings.Join(ops, ","), strings.Trim(strings.Join(strings.Fields(fmt.Sprint(numbers)), ","), "[]"))
 
 	// re-randomise numbers before sending
@@ -55,7 +55,7 @@ func (n *Numbers) Generate() Result {
 	}
 }
 
-func recurse(operators []string, numbers []int, ops []string) (int, []string) {
+func calculate(operators []string, numbers []int, ops []string) (int, []string) {
 
 	if len(operators) == 0 {
 		return numbers[0], ops
@@ -65,27 +65,21 @@ func recurse(operators []string, numbers []int, ops []string) (int, []string) {
 	a := numbers[0]
 	b := numbers[1]
 
+	// initialise the result
+	z := 0
 	switch op {
 	case "+":
 		ops = append(ops, op)
-		z := a + b
-		n := numbers[2:]
-		r := append([]int{z}, n...)
-		return recurse(operators[1:], r, ops)
+		z = a + b
 	case "-":
 		ops = append(ops, op)
-		z := a - b
-		n := numbers[2:]
-		r := append([]int{z}, n...)
-		return recurse(operators[1:], r, ops)
+		z = a - b
 	case "*":
 		ops = append(ops, op)
-		z := a * b
-		n := numbers[2:]
-		r := append([]int{z}, n...)
-		return recurse(operators[1:], r, ops)
+		z = a * b
 	case "/":
-		var z int
+		// we need to check if the two numbers
+		// can divide to give a whole number
 		if a%b != 0 {
 			z = a / b
 			ops = append(ops, op)
@@ -93,14 +87,17 @@ func recurse(operators []string, numbers []int, ops []string) (int, []string) {
 			z = b % a
 			ops = append(ops, op)
 		} else {
+			// if not we just add them and store
+			// the operator as a "+"
 			z = a + b
 			ops = append(ops, "+")
 		}
 
-		n := numbers[2:]
-		r := append([]int{z}, n...)
-		return recurse(operators[1:], r, ops)
 	}
 
-	return 0, []string{}
+	// append the result to the start
+	// of the numbers array
+	r := append([]int{z}, numbers[2:]...)
+	// recursively determine the result
+	return calculate(operators[1:], r, ops)
 }

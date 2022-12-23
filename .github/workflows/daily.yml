@@ -7,11 +7,11 @@ on: push
 jobs:
   daily:
     runs-on: ubuntu-latest
+    env:
+      TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v3
-      with:
-        go-version: '1.18' # The Go version to download (if necessary) and use.
-    - env:
-        TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-    - run: go run main.go
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.18' # The Go version to download (if necessary) and use.
+      - run: go run main.go

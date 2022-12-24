@@ -1,4 +1,4 @@
-name: daily puzzle
+name: test daily puzzle
 on: push
 
 jobs:

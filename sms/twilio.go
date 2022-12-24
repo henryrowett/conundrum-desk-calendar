@@ -9,7 +9,9 @@ import (
 	"strings"
 )
 
-func Send(body string) error {
+type Twilio struct{}
+
+func (t *Twilio) Send(body string) error {
 	// read token from env
 	authToken := os.Getenv("TWILIO_AUTH_TOKEN")
 	accountSid := os.Getenv("TWILIO_ACCOUNT_SID")

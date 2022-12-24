@@ -1,8 +1,5 @@
 name: daily puzzle
-# run daily at 06:39
-on:
-  schedule:
-    - cron: "39 6 * * *"
+on: push
 
 jobs:
   daily:
@@ -16,8 +13,8 @@ jobs:
       AWS_REGION: '${{ secrets.AWS_REGION }}'
       AWS_SDK_LOAD_CONFIG: '${{ secrets.AWS_SDK_LOAD_CONFIG }}'
       AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
-      # phone numbers
-      NUMBERS: '${{ secrets.NUMBERS }}'
+      # phone number
+      NUMBERS: '${{ secrets.TEST_NUMBERS }}'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3

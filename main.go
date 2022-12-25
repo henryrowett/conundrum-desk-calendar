@@ -24,7 +24,8 @@ func main() {
 
 	// format today and yesterday's puzzles
 	body := fmt.Sprintf("%s%s\n%s", rounds.Title(), rounds.TodayString(letters, conundrum), rounds.YesterdayString(letters, conundrum))
-	err := sms.Send(body)
+	a := sms.AWS{}
+	err := a.Send(body)
 	if err != nil {
 		log.Fatal(err.Error())
 	}

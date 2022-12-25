@@ -3,7 +3,7 @@ My parents used to get Countdown Desk Calendar but it is no longer being publish
 
 This lil number generates a letters round and a conundrum for each day of the year. The numbers round is a work in progress.
 
-The puzzles are placed into a template and sent to the numbers specified in `NUMBERS` env variable using [Twilio](https://www.twilio.com/) (currently migrating this to AWS SNS).
+The puzzles are placed into a template and sent to the numbers specified in `NUMBERS` env variable using [AWS SNS](https://aws.amazon.com/sns/).
 
 The puzzle is sent daily at 06:39.
 

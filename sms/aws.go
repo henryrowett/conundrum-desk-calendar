@@ -1,6 +1,7 @@
 package sms
 
 import (
+	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sns"
@@ -31,10 +32,12 @@ func (a *AWS) Send(body string) error {
 			Message:     aws.String(body),
 			PhoneNumber: aws.String(n),
 		}
-		_, err := svc.Publish(req)
+		rsp, err := svc.Publish(req)
 		if err != nil {
 			return err
 		}
+
+		fmt.Println(rsp.String())
 	}
 
 	return nil

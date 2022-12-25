@@ -18,7 +18,6 @@ type AWS struct{}
 // - AWS_SDK_LOAD_CONFIG
 // - AWS_SECRET_ACCESS_KEY
 func (a *AWS) Send(body string) error {
-
 	sess := session.Must(session.NewSession())
 
 	svc := sns.New(sess, &aws.Config{

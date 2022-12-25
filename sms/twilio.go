@@ -11,6 +11,8 @@ import (
 
 type Twilio struct{}
 
+// Deprecated
+// migrated sms services to AWS SMS
 func (t *Twilio) Send(body string) error {
 	// read token from env
 	authToken := os.Getenv("TWILIO_AUTH_TOKEN")

@@ -2,7 +2,7 @@ name: test daily puzzle
 on: push
 
 jobs:
-  daily:
+  test-flow:
     runs-on: ubuntu-latest
     env:
       # twilio config

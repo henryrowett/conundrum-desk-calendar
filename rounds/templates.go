@@ -2,12 +2,12 @@ package rounds
 
 import "fmt"
 
-const title = "  \n🤯🕛 HENRY'S COUNTDOWN CALENDAR 🕡🤯\n\n"
+const titleTemplate = "  \n🕛 HENRY'S COUNTDOWN CALENDAR - %s 🕡\n\n"
 const todayTemplate = "Today's puzzles:\n%s puzzle: %s\n%s: %s\n\n"
 const yesterdayTemplate = "Yesterday's answers:\n%s puzzle: %s\n%s: %s"
 
 func Title() string {
-	return title
+	return fmt.Sprintf(titleTemplate, timeNowF.Format(dateFormat))
 }
 
 func TodayString(puzzle Result, conundrum Result) string {

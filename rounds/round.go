@@ -4,7 +4,7 @@ import "time"
 
 var timeNowF = time.Now()
 
-const dateFormat = "01-02-2006"
+const dateFormat = "02-01-2006"
 
 const (
 	lettersRound   = "letter"

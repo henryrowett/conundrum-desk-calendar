@@ -2,6 +2,7 @@ package rounds
 
 import "fmt"
 
+const dateFormat = "02/01/2006"
 const titleTemplate = "  \n🕛 %s - HENRY'S COUNTDOWN CALENDAR - Day %d 🕡\n\n"
 const todayTemplate = "Today's puzzles:\n%s puzzle: %s\n%s: %s\n\n"
 const yesterdayTemplate = "Yesterday's answers:\n%s puzzle: %s\n%s: %s"

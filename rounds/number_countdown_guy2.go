@@ -48,47 +48,71 @@ type NumCountdown struct {
 	Nums    []float64
 }
 
+// TODO: Impliment
 func (t NumCountdown) IsEasy() bool {
 	return false
 }
 
-func MakeRandomTree(p []float64) *NumCountdown {
+func generateLeafs(nums []float64, leaves ...*LeafNode) {
+	for i, n := range nums {
+		leaves[i] = &LeafNode{
+			Value: n,
+		}
+	}
+}
+
+// TODO: Impliment
+func makeRandomTree(nums []float64) *NumCountdown {
+
+	var l1, l2, l3, l4, l5, l6 *LeafNode
+	generateLeafs(nums, l1, l2, l3, l4, l5, l6)
+
 	return &NumCountdown{
 		ExpTree: OperatorNode{
-			OperatorNode{LeafNode{p[0]}, LeafNode{p[1]}, "a"},
-			OperatorNode{LeafNode{p[0]}, LeafNode{p[1]}, "a"},
+			OperatorNode{LeafNode{nums[0]}, LeafNode{nums[1]}, "a"},
+			OperatorNode{LeafNode{nums[0]}, LeafNode{nums[1]}, "a"},
 			"t",
 		},
-		Nums: p,
+		Nums: nums,
 	}
 }
 
-func TestVal(v float64) bool {
+func testVal(c *NumCountdown) (float64, bool) {
+	v := c.ExpTree.Eval()
 	if v != float64(int(v)) || v <= 0 {
-		return false
+		return v, false
 	}
-	return true
+	return v, true
 }
 
-func GetTree(nums []float64) (NumCountdown, float64) {
-	countdown := MakeRandomTree(nums)
-	finalVal := countdown.ExpTree.Eval()
+func getTree(nums []float64) (NumCountdown, float64) {
+	countdown := makeRandomTree(nums)
 
-	if TestVal(finalVal) {
-		return *countdown, finalVal
+	if v, ok := testVal(countdown); ok {
+		return *countdown, v
 	}
 
-	return GetTree(nums)
+	return getTree(nums)
 }
 
 func main() {
 	// seed := time.Now().UTC().UnixNano()
 	// rng := rand.New(rand.NewSource(seed))
 
-	tree, val := GetTree([]float64{1, 2})
-	fmt.Printf("Tree is:\n %+v\n\n Final value is: %d", tree, int(val))
+	numCountdown, val := getTree([]float64{1, 2})
+	fmt.Printf("Tree is:\n %+v\n\n Final value is: %d", numCountdown, int(val))
 }
 
-// if v, ok := TestVal(tree); ok {
-//     return v
+// // Generator function (not used)
+// func GenerateLeafs(nums []float64) chan *LeafNode {
+// 	c := make(chan *LeafNode)
+// 	go func() {
+// 		for _, i := range nums {
+// 			c <- &LeafNode{
+// 				Value: i,
+// 			}
+// 		}
+// 		close(c)
+// 	}()
+//
 // }

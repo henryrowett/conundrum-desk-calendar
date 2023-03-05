@@ -2,6 +2,7 @@ package rounds
 
 import (
 	"countdown/utils"
+	"fmt"
 	"math/rand"
 	"strings"
 	"time"
@@ -18,8 +19,8 @@ func (c *Letters) Generate() Result {
 
 	// buff out the word to 9 chars
 	if len(base) != 9 {
-		req := 9 - len(base)
-		base = base + randomString(req)
+		rem := 9 - len(base)
+		base = base + randomString(rem)
 	}
 
 	baseRune := []rune(base)
@@ -30,6 +31,9 @@ func (c *Letters) Generate() Result {
 
 	today := strings.ToUpper(string(baseRune))
 
+	// add the length of the word as a hint
+	todayWithHint := fmt.Sprintf("%s (%d)", today, len(base))
+
 	// re-seed to fetch yesterday's solution
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
 	y := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
@@ -37,7 +41,7 @@ func (c *Letters) Generate() Result {
 
 	return Result{
 		Round:     lettersRound,
-		Today:     today,
+		Today:     todayWithHint,
 		Yesterday: yesterday,
 	}
 }

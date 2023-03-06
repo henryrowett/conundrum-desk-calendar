@@ -15,7 +15,8 @@ func TestLettersGenerate(t *testing.T) {
 
 	// expected result
 	word := "MCEFLOAEO"
-	today := fmt.Sprintf("%s (%d)", word, len(word))
+	length := 6
+	today := fmt.Sprintf("%s (%d)", word, length)
 	yesterday := "GENERATE"
 
 	// act

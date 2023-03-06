@@ -15,7 +15,8 @@ func (c *Letters) Generate() Result {
 	rand.Seed(int64(timeNowF.YearDay()))
 
 	// fetch a word from the seeds
-	base := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
+	seed := utils.LettersWords[rand.Intn(len(utils.LettersWords))]
+	base := seed
 
 	// buff out the word to 9 chars
 	if len(base) != 9 {
@@ -32,7 +33,7 @@ func (c *Letters) Generate() Result {
 	today := strings.ToUpper(string(baseRune))
 
 	// add the length of the word as a hint
-	todayWithHint := fmt.Sprintf("%s (%d)", today, len(base))
+	todayWithHint := fmt.Sprintf("%s (%d)", today, len(seed))
 
 	// re-seed to fetch yesterday's solution
 	rand.Seed(int64(timeNowF.Add(-1 * time.Hour * 24).YearDay()))
